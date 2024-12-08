@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Nombres</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Buscador de Nombres</h1>
+        <form method="POST">
+            <input type="text" name="search" placeholder="Buscar por nombre..." required>
+            <button type="submit">Buscar</button>
+        </form>
+        
+        {% if data %}
+            <div class="results">
+                <h2>Resultados de la búsqueda:</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Email</th>
+                            <th>Deudas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                            <tr>
+                                <td>{{ row.Nombre }}</td>
+                                <td>{{ row.Apellido }}</td>
+                                <td>{{ row.Email }}</td>
+                                <td>{{ row.Deuda }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No se encontraron resultados.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
